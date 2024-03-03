@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Login from '../Auth/Login';
 import logo from "../Auth/logo.png";
 import "./Header.css"
-import LoginPage from './LoginPage';
+// import LoginPage from './LoginPage';
 
 function Header() {
   return (
@@ -19,10 +19,10 @@ function Header() {
           <div>
             <Login/>
           </div>
-          <div>
+          {/* <div>
             <Link to="./Auth/login">Вход</Link>
             <Link to="./Auth/Registration">Регистрация</Link> {}
-          </div>
+          </div> */}
         </div>  
       </div>
   );

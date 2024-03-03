@@ -2,35 +2,53 @@ import React, { useState } from "react";
 import "./Login.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+
+
 // import logo from "./logo.png"; 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-
-    };
+   
+    
+        const handleLogin = async (e) => {
+            e.preventDefault();
+        
+            try {
+                const response = await axios.post('https://royal-nerve-lorby.up.railway.app/api/auth/login', {
+                    username,
+                    password
+                });
+                console.log('Успешная аутентификация!', response.data);
+                //nastroit routings
+            } catch (error) {
+                console.error('Ошибка аутентификации:', error);
+                //if client make error, send some message
+            }
+        };
+        
+    
 
     return (
         <div>
            
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="login-form">
                 <div className="input-forms">
                     <div>
-                        {/* <label htmlFor="username"></label> */}
+                       
                         <input 
                             type="text" 
                             id="username" 
                             name="username" 
-                            placeholder="vvedy suda-tuda password"
+                            placeholder="vvedy suda-tuda login"
                             value={username} 
                             onChange={(e) => setUsername(e.target.value)} 
                         />
                     </div>
                     <div>
-                        {/* <label htmlFor="password">Пароль:</label> */}
+                     
                         <input 
                             type={showPassword ? "text" : "password"} 
                             id="password" 
@@ -41,13 +59,12 @@ function Login() {
                            <FontAwesomeIcon 
                     icon={showPassword ? faEye : faEyeSlash} 
                     onClick={() => setShowPassword(!showPassword)} 
+                    className="password-toggle-eye"
                 />
-                        {/* <button type="button" onClick={() => setShowPassword(!showPassword)}>
-                            {showPassword ? "Скрыть" : "Показать"} 
-                        </button> */}
+                        
                     </div>
                 </div>    
-                <button type="submit">Войти</button>
+                <button type="submit" className="Login-button">Войти</button>
             </form>
             <p>Еще не зарегистрированы? <a href="/registration">Регистрация</a></p>
         </div>
