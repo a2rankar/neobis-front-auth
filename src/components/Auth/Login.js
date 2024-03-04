@@ -3,6 +3,7 @@ import "./Login.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 
 // import logo from "./logo.png"; 
@@ -66,7 +67,7 @@ function Login() {
                 </div>    
                 <button type="submit" className="Login-button">Войти</button>
             </form>
-            <p>Еще не зарегистрированы? <a href="/registration">Регистрация</a></p>
+            <p>Еще не зарегистрированы? <Link to="/registration">Регистрация</Link></p>
         </div>
     );
 }

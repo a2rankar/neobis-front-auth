@@ -1,5 +1,6 @@
-import "./RegistrationForm.css"
+import "./RegistrationForm.css";
 import React, { useState } from "react";
+import axios from 'axios';
 
 function Registration() {
     const [email, setEmail] = useState("");
@@ -8,10 +9,23 @@ function Registration() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    
-    const handleRegistration = (e) => {
+
+    const handleRegistration = async (e) => {
         e.preventDefault();
-     //waitong for a backendera 
+    
+        try {
+            const response = await axios.post('https://royal-nerve-lorby.up.railway.app/api/auth/register', {
+                email,
+                username,
+                password,
+                confirmPassword
+            });
+            console.log('Успешная регистрация!', response.data);
+            // Настройте маршруты или выполните другие действия после успешной регистрации
+        } catch (error) {
+            console.error('Ошибка регистрации:', error);
+            // Возможно, вы хотите отобразить пользователю сообщение об ошибке
+        }
     };
 
     return (
@@ -65,6 +79,7 @@ function Registration() {
                     </button>
                 </div>
                 <button type="submit">Зарегистрироваться</button>
+                
             </form>
             <p>Уже зарегистрированы? <a href="/login">Авторизация</a></p>
         </div>

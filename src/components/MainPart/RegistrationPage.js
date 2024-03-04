@@ -3,7 +3,7 @@ import React from 'react';
 import RegistrationForm from '../Auth/RegistrationForm';
 
 
-function Registration() {
+function RegistrationPage() {
     return (
         <div>
             <RegistrationForm />
@@ -11,4 +11,4 @@ function Registration() {
     );
 }
 
-export default Registration;
+export default RegistrationPage;
