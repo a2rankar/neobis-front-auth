@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+// import getToken from "../ApiServer/token";
 
 
 // import logo from "./logo.png"; 
@@ -11,6 +12,7 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    // const [token, setToken] = useState("");
 
    
     
@@ -22,13 +24,22 @@ function Login() {
                     username,
                     password
                 });
-                console.log('Успешная аутентификация!', response.data);
-                //nastroit routings
+                console.log('Успешная аутентификация!', response.data); 
             } catch (error) {
                 console.error('Ошибка аутентификации:', error);
-                //if client make error, send some message
             }
         };
+
+        async function getToken() {
+            try {
+                const response = await axios.get('https://royal-nerve-lorby.up.railway.app/api/auth/token');
+                const token = response.data.token;
+                return token;
+            } catch (error) {
+                console.error('Ошибка при получении токена:', error);
+                throw error;
+            }
+        }
         
     
 
