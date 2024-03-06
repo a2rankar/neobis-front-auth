@@ -4,7 +4,12 @@ body {
 }
 
 .container {
+    display: flex;
+    /* justify-content: center; */
+    text-align: center;
     justify-content: center;
     align-items: center;
-    text-align: center;
+}
+.container div {
+    margin-bottom: 10px;
 }

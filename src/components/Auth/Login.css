@@ -30,8 +30,14 @@ input {
 .password-toggle-eye {
     position: absolute;
     top: 50%;
-    right: 100%;
     right: 15px;
     transform: translateX(-50%);
     cursor: pointer;
+}
+.Login-button {
+    margin-top: 30px;
+  }
+  
+.input-forms input{
+   margin-bottom: 10px
 }

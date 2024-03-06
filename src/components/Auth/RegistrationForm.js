@@ -1,6 +1,8 @@
 import "./RegistrationForm.css";
 import React, { useState } from "react";
 import axios from 'axios';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Registration() {
     const [email, setEmail] = useState("");
@@ -21,20 +23,20 @@ function Registration() {
                 confirmPassword
             });
             console.log('Успешная регистрация!', response.data);
-            // Настройте маршруты или выполните другие действия после успешной регистрации
+
         } catch (error) {
             console.error('Ошибка регистрации:', error);
-            // Возможно, вы хотите отобразить пользователю сообщение об ошибке
+          
         }
     };
 
     return (
         <div className="container">
-            <h2>Регистрация</h2>
+         
             <form onSubmit={handleRegistration}>
                 <div>
-                    <label htmlFor="email">Адрес электронной почты:</label>
-                    <input 
+                  
+                    <input placeholder="Введи адрес почты:"
                         type="email" 
                         id="email" 
                         name="email" 
@@ -43,8 +45,8 @@ function Registration() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="username">Логин:</label>
-                    <input 
+                 
+                    <input placeholder="Pridumay Login"
                         type="text" 
                         id="username" 
                         name="username" 
@@ -53,30 +55,34 @@ function Registration() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Пароль:</label>
-                    <input 
+                  
+                    <input placeholder="Create a new password"
                         type={showPassword ? "text" : "password"} 
                         id="password" 
                         name="password" 
                         value={password} 
                         onChange={(e) => setPassword(e.target.value)} 
                     />
-                    <button type="button" onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? "Скрыть" : "Показать"} пароль
-                    </button>
+                     <FontAwesomeIcon 
+                        icon={showPassword ? faEye : faEyeSlash} 
+                        onClick={() => setShowPassword(!showPassword)} 
+                        className="password-toggle-eye"
+                    />
                 </div>
                 <div>
-                    <label htmlFor="confirmPassword">Подтверждение пароля:</label>
-                    <input 
+                   
+                    <input placeholder="confirm your password"
                         type={showConfirmPassword ? "text" : "password"} 
                         id="confirmPassword" 
                         name="confirmPassword" 
                         value={confirmPassword} 
                         onChange={(e) => setConfirmPassword(e.target.value)} 
                     />
-                    <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                        {showConfirmPassword ? "Скрыть" : "Показать"} пароль
-                    </button>
+                      <FontAwesomeIcon 
+                        icon={showPassword ? faEye : faEyeSlash} 
+                        onClick={() => setShowPassword(!showPassword)} 
+                        className="password-toggle-eye"
+                    />
                 </div>
                 <button type="submit">Зарегистрироваться</button>
                 

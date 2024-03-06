@@ -12,7 +12,7 @@ function App() {
     return (
         <Router>
             <div>
-                <Header />
+                {/* <Header /> */}
                 <Routes>
                 <Route path="/" element={<Header />} /> 
                 <Route path="/login" element={<Login />} />
