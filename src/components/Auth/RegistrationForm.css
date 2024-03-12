@@ -31,10 +31,22 @@ ul {
     text-align: left;
    font-size: 10px;
 }
+.password-toggle-eyeofpas {
+    display: block;
 
-.valid-password {
+}
+
+
+/* .valid-password {
     color: initial;
 }
 .invalid-password {
     color: red; 
+} */
+.invalid p {
+    color: red;
+}
+.valid p {
+    color: rgb(14, 200, 14);
+    font-size: 20px;
 }

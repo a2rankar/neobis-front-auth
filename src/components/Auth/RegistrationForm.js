@@ -5,8 +5,9 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Registration() {
-    const [passwordValid, setPasswordValid] = useState(true);
-    const [confirmPasswordValid, setConfirmPasswordValid] = useState(true);
+    const [validPassword, setValidPassword] = useState(true);
+    const [validNumber, setValidNumber] = useState(true);
+    const [validSpecialChar, setValidSpecialChar] = useState(true);
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -14,22 +15,17 @@ function Registration() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+    const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+        setValidPassword(newPassword.length >= 8);
+        setValidNumber(/\d/.test(newPassword));
+        setValidSpecialChar(/[!@#$%^&*]/.test(newPassword));
+    };
+
     const handleRegistration = async (e) => {
         e.preventDefault();
-
-        // Проверка валидации пароля и его подтверждения
-        const isPasswordValid = password.length >= 8 && /\d/.test(password) && /[!@#$%^&*]/.test(password);
-        const isConfirmPasswordValid = confirmPassword === password;
-
-        // Обновление состояния валидации
-        setPasswordValid(isPasswordValid);
-        setConfirmPasswordValid(isConfirmPasswordValid);
-
-        // Если пароль или его подтверждение неверны, прекращаем регистрацию
-        if (!isPasswordValid || !isConfirmPasswordValid) {
-            return;
-        }
-
+    
         try {
             const response = await axios.post('https://royal-nerve-lorby.up.railway.app/api/auth/register', {
                 email,
@@ -41,6 +37,7 @@ function Registration() {
 
         } catch (error) {
             console.error('Ошибка регистрации:', error);
+          
         }
     };
 
@@ -49,7 +46,7 @@ function Registration() {
             <form onSubmit={handleRegistration}>
                 <div>
                     <input 
-                        placeholder="Введи адрес почты:"
+                        placeholder="Введите адрес почты:"
                         type="email" 
                         id="email" 
                         name="email" 
@@ -69,20 +66,24 @@ function Registration() {
                 </div>
                 <div>
                     <input 
-                        placeholder="Введите новый пароль"
+                        placeholder="Создайте новый пароль"
                         type={showPassword ? "text" : "password"} 
                         id="password" 
                         name="password" 
                         value={password} 
-                        onChange={(e) => setPassword(e.target.value)}
-                        className={passwordValid ? 'password-input valid-password' : 'password-input invalid-password'}  
+                        onChange={handlePasswordChange}
+                        // className={(validPassword && validNumber && validSpecialChar) ? 'password-input valid-password' : 'password-input invalid-password'}  
                     />
                     <FontAwesomeIcon 
                         icon={showPassword ? faEye : faEyeSlash} 
                         onClick={() => setShowPassword(!showPassword)} 
                         className="password-toggle-eye"
                     />
-                    {!passwordValid && <p className="error-message">Пароль должен содержать минимум 8 символов, хотя бы 1 цифру и 1 специальный символ</p>}
+                    <ul>
+                        <li className={validPassword ? '' : 'invalid'}><p>Minimum 8 characters long</p></li>
+                        <li className={validNumber ? '' : 'invalid'}><p>At least 1 number</p></li>
+                        <li className={validSpecialChar ? '' : 'invalid'}><p>At least 1 special character (e.g., *, &amp;, %)</p></li>
+                    </ul>
                 </div>
                 <div>
                     <input 
@@ -92,14 +93,12 @@ function Registration() {
                         name="confirmPassword" 
                         value={confirmPassword} 
                         onChange={(e) => setConfirmPassword(e.target.value)} 
-                        className={confirmPasswordValid ? 'password-input valid-password' : 'password-input invalid-password'}  
                     />
                     <FontAwesomeIcon 
                         icon={showConfirmPassword ? faEye : faEyeSlash} 
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)} 
                         className="password-toggle-eye"
                     />
-                    {!confirmPasswordValid && <p className="error-message">Пароли не совпадают</p>}
                 </div>
                 <button type="submit">Зарегистрироваться</button>
             </form>
