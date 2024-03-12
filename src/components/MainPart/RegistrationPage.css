@@ -1,7 +1,9 @@
 .registration-page {
     display: flex;
-    justify-content: space-between;
+    margin-top: 200px;
+    justify-content: space-around;
+    /* margin-bottom: 400px; */
     text-align: center;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }

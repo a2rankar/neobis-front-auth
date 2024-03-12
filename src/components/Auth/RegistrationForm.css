@@ -4,12 +4,37 @@ body {
 }
 
 .container {
-    display: flex;
+    display: grid;
+
     /* justify-content: center; */
-    text-align: center;
+    /* text-align: center;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 .container div {
     margin-bottom: 10px;
+}
+
+button {
+background-color: black;
+color: aliceblue;
+width: 360px ;
+height: 54px;
+border-radius: 12px;
+}
+input {
+    height: 50px;
+    padding-left: 10px;
+}
+ul {
+   
+    text-align: left;
+   font-size: 10px;
+}
+
+.valid-password {
+    color: initial;
+}
+.invalid-password {
+    color: red; 
 }
