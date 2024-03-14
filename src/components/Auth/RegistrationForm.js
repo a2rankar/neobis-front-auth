@@ -72,17 +72,17 @@ function Registration() {
                         name="password" 
                         value={password} 
                         onChange={handlePasswordChange}
-                        // className={(validPassword && validNumber && validSpecialChar) ? 'password-input valid-password' : 'password-input invalid-password'}  
-                    />
+                        className={validPassword ? 'password-input valid-password' : 'password-input invalid-password'} 
+                         />
                     <FontAwesomeIcon 
                         icon={showPassword ? faEye : faEyeSlash} 
                         onClick={() => setShowPassword(!showPassword)} 
-                        className="password-toggle-eye"
+                        className="password-toggle-eyeofpas"
                     />
                     <ul>
-                        <li className={validPassword ? '' : 'invalid'}><p>Minimum 8 characters long</p></li>
-                        <li className={validNumber ? '' : 'invalid'}><p>At least 1 number</p></li>
-                        <li className={validSpecialChar ? '' : 'invalid'}><p>At least 1 special character (e.g., *, &amp;, %)</p></li>
+                        <li className={validPassword ? 'valid' : 'invalid'}><p>Minimum 8 characters long</p></li>
+                        <li className={validNumber ? 'valid' : 'invalid'}><p>At least 1 number</p></li>
+                        <li className={validSpecialChar ? 'valid' : 'invalid'}><p>At least 1 special character (e.g., *, &amp;, %)</p></li>
                     </ul>
                 </div>
                 <div>
@@ -94,11 +94,12 @@ function Registration() {
                         value={confirmPassword} 
                         onChange={(e) => setConfirmPassword(e.target.value)} 
                     />
-                    <FontAwesomeIcon 
+                      <FontAwesomeIcon 
                         icon={showConfirmPassword ? faEye : faEyeSlash} 
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)} 
-                        className="password-toggle-eye"
+                        className="password-toggle-eyeofconf"
                     />
+                  
                 </div>
                 <button type="submit">Зарегистрироваться</button>
             </form>
