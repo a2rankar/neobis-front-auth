@@ -10,7 +10,7 @@ import LoginPage from './LoginPage';
 function Header() {
   return (
       <div className='forms-logo'>
-          <div className='logo'>
+         <div className='logo'>
             <img src={logo} alt="Логотип" />
             <Link to="/">
               <h1>Lorby</h1>

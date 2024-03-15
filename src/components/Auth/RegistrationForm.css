@@ -14,13 +14,17 @@ body {
 .container div {
     margin-bottom: 10px;
 }
-
+form {
+    position: relative;
+}
 button {
-background-color: black;
-color: aliceblue;
+background-color: #D7D7D7;
+color: rgb(7, 10, 13);
 width: 360px ;
 height: 54px;
 border-radius: 12px;
+/* outline: none; */
+border: none;
 }
 input {
     height: 50px;
@@ -31,21 +35,18 @@ ul {
     text-align: left;
    font-size: 10px;
 }
-.ofToggle {
-    display: flex;
-}
 .password-toggle-eyeofpas {
-    position: absolute;
-    right: 10px;
-    top: 50%;
+    position: absolute ;
+    right: 5px;
+    top: 40%; 
     transform: translateX(-50%);
     cursor: pointer;
 }
 
 .password-toggle-eyeofconf {
     position: absolute;
-    right: 10px;
-    top: 50%;
+    right: 5px;
+    top: 74%;
     transform: translateX(-50%);
     cursor: pointer;
 }
@@ -62,4 +63,10 @@ ul {
 }
 .valid p {
     color: rgb(14, 200, 14);
+}
+.input-password  {
+    color:rgb(7, 10, 13)
+}
+.input-placeholder {
+    color: grey;
 }

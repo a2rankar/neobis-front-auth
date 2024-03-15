@@ -64,6 +64,8 @@ function Registration() {
                         onChange={(e) => setUsername(e.target.value)} 
                     />
                 </div>
+
+
                 <div>
                     <input 
                         placeholder="Создайте новый пароль"
@@ -72,33 +74,41 @@ function Registration() {
                         name="password" 
                         value={password} 
                         onChange={handlePasswordChange}
-                        className={validPassword ? 'password-input valid-password' : 'password-input invalid-password'} 
-                         />
-                    <FontAwesomeIcon 
+                        className={`input-password ${validPassword ? 'password-input valid-password' : 'password-input invalid-password'}` }  
+                        
+                      
+                     
+
+                        />
+                        
+                          <FontAwesomeIcon 
                         icon={showPassword ? faEye : faEyeSlash} 
                         onClick={() => setShowPassword(!showPassword)} 
-                        className="password-toggle-eyeofpas"
-                    />
+                        className="password-toggle-eyeofpas"/>
                     <ul>
                         <li className={validPassword ? 'valid' : 'invalid'}><p>Minimum 8 characters long</p></li>
                         <li className={validNumber ? 'valid' : 'invalid'}><p>At least 1 number</p></li>
                         <li className={validSpecialChar ? 'valid' : 'invalid'}><p>At least 1 special character (e.g., *, &amp;, %)</p></li>
                     </ul>
                 </div>
-                <div>
+                <div className="ofToggle">
                     <input 
+                       
+                        
                         placeholder="Подтвердите пароль"
                         type={showConfirmPassword ? "text" : "password"} 
                         id="confirmPassword" 
                         name="confirmPassword" 
                         value={confirmPassword} 
                         onChange={(e) => setConfirmPassword(e.target.value)} 
+            
+
+                        
                     />
-                      <FontAwesomeIcon 
+                    <FontAwesomeIcon 
                         icon={showConfirmPassword ? faEye : faEyeSlash} 
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)} 
-                        className="password-toggle-eyeofconf"
-                    />
+                        className="password-toggle-eyeofconf"/>
                   
                 </div>
                 <button type="submit">Зарегистрироваться</button>
